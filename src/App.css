@@ -1,0 +1,12 @@
+/* src/App.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.App {
+    padding-top: 60px; /* Adjust according to your navbar height */
+}
