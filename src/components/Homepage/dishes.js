@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./style.css";
 export const Dishes = () => {
     const [status, setStatus] = useState("");
-    const [productData, setProductData] = useState([]);
+    const [DishesData, setProductData] = useState([]);
 
     useEffect(() => {
         const getProducts = async () => {
@@ -30,15 +30,16 @@ export const Dishes = () => {
     return (
         <>
             <div className="card-container">
-                {productData && productData.length !== 0 ? (
-                    productData.map((item, index) => (
+                {DishesData && DishesData.length !== 0 ? (
+                    DishesData.map((item, index) => (
                         <div key={item.id}>
                             <Link
                                 to={`/Dishes/${item.strCategory}`}
-                                state={productData}
+                                state={DishesData}
                                 key={index}
                                 style={{
                                     textDecoration: "none",
+                                    color: "inherit",
                                 }}
                             >
                                 <div className="category">

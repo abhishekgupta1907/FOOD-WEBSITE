@@ -1,96 +1,88 @@
-import "@fortawesome/fontawesome-free/css/all.min.css";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./style.css";
 
-const LoginPage = () => {
-    const [isActive, setIsActive] = useState(false);
+const initialUsers = [
+    { id: "user1", password: "pass1" },
+    { id: "user2", password: "pass2" },
+    { id: "user3", password: "pass3" },
+    // Add more users if needed
+];
 
-    const toggleForm = () => {
-        setIsActive(!isActive);
+const LoginPage = ({ onLoginSuccess }) => {
+    const [users, setUsers] = useState(initialUsers);
+    const [id, setId] = useState("");
+    const [password, setPassword] = useState("");
+    const [isRegistering, setIsRegistering] = useState(false);
+    const [error, setError] = useState("");
+    const navigate = useNavigate(); // Initialize useNavigate
+
+    const handleLogin = () => {
+        const user = users.find(
+            (user) => user.id === id && user.password === password
+        );
+        if (user) {
+            onLoginSuccess(id);
+            navigate("/"); // Redirect to homepage
+        } else {
+            setError("Invalid ID or Password");
+        }
+    };
+
+    const handleRegister = () => {
+        if (users.find((user) => user.id === id)) {
+            setError("User already exists");
+        } else {
+            setUsers([...users, { id, password }]);
+            alert("Registration successful! You can now log in.");
+            setIsRegistering(false);
+            setError("");
+        }
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (isRegistering) {
+            handleRegister();
+        } else {
+            handleLogin();
+        }
     };
 
     return (
-        <div className={`container ${isActive ? "active" : ""}`} id="container">
-            <div className="form-container sign-up">
-                <form>
-                    <h1>Create Account</h1>
-                    <div className="social-icons">
-                        <a href="#" className="icon">
-                            <i className="fa-brands fa-google-plus-g"></i>
-                        </a>
-                        <a href="#" className="icon">
-                            <i className="fa-brands fa-facebook-f"></i>
-                        </a>
-                        <a href="#" className="icon">
-                            <i className="fa-brands fa-github"></i>
-                        </a>
-                        <a href="#" className="icon">
-                            <i className="fa-brands fa-linkedin-in"></i>
-                        </a>
-                    </div>
-                    <span>or use your email for registration</span>
-                    <input type="text" placeholder="Name" required />
-                    <input type="email" placeholder="Email" required />
-                    <input type="password" placeholder="Password" required />
-                    <button type="submit">Sign Up</button>
-                </form>
-            </div>
-            <div className="form-container sign-in">
-                <form action="/">
-                    <h1>Sign In</h1>
-                    <div className="social-icons">
-                        <a href="#" className="icon">
-                            <i className="fa-brands fa-google-plus-g"></i>
-                        </a>
-                        <a href="#" className="icon">
-                            <i className="fa-brands fa-facebook-f"></i>
-                        </a>
-                        <a href="#" className="icon">
-                            <i className="fa-brands fa-github"></i>
-                        </a>
-                        <a href="#" className="icon">
-                            <i className="fa-brands fa-linkedin-in"></i>
-                        </a>
-                    </div>
-                    <span>or use your email account</span>
-                    <input type="email" placeholder="Email" required />
-                    <input type="password" placeholder="Password" required />
-                    <a href="*">Forgot Your Password?</a>
-                    <button type="submit">Sign In</button>
-                </form>
-            </div>
-            <div className="toggle-container">
-                <div className="toggle">
-                    <div className="toggle-panel toggle-left">
-                        <h1>Welcome Back!</h1>
-                        <p>
-                            Enter your personal details to access all the site's
-                            features
-                        </p>
-                        <button
-                            className="hidden"
-                            id="login"
-                            onClick={toggleForm}
-                        >
-                            Sign In
-                        </button>
-                    </div>
-                    <div className="toggle-panel toggle-right">
-                        <h1>Hello, Friend!</h1>
-                        <p>
-                            Register with your personal details to access all
-                            the site's features
-                        </p>
-                        <button
-                            className="hidden"
-                            id="register"
-                            onClick={toggleForm}
-                        >
-                            Sign Up
-                        </button>
-                    </div>
-                </div>
-            </div>
+        <div className="login-page">
+            <h1>{isRegistering ? "Sign Up" : "Sign In"}</h1>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    placeholder="User ID"
+                    value={id}
+                    onChange={(e) => setId(e.target.value)}
+                    required
+                />
+                <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
+                {error && <p className="error">{error}</p>}
+                <button type="submit">
+                    {isRegistering ? "Sign Up" : "Sign In"}
+                </button>
+            </form>
+            <button
+                className="toggle"
+                onClick={() => {
+                    setIsRegistering(!isRegistering);
+                    setError("");
+                }}
+            >
+                {isRegistering
+                    ? "Already have an account? Sign In"
+                    : "Don’t have an account? Sign Up"}
+            </button>
         </div>
     );
 };

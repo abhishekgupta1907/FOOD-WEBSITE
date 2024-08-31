@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 
-const Navbar = () => {
+const Navbar = ({ loggedInUser }) => {
+    const initials = loggedInUser ? loggedInUser.slice(0, 2) : "";
     return (
         <nav className="navbar">
             <div className="navbar-logo">
@@ -13,11 +14,18 @@ const Navbar = () => {
                     <Link to="/">Home</Link>
                 </li>
                 <li>
-                    <Link to="/contact">Contact</Link>
+                    <Link to="/about">About Us</Link>
                 </li>
                 <li>
-                    <Link to="/login">Login</Link>
+                    <Link to="/contact">Contact</Link>
                 </li>
+                {loggedInUser ? (
+                    <li className="user-info">{initials}</li>
+                ) : (
+                    <li>
+                        <a href="/login">Login</a>
+                    </li>
+                )}
             </ul>
         </nav>
     );
