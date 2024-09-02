@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 
-const Navbar = ({ loggedInUser }) => {
+const Navbar = ({ loggedInUser, setShowLogin }) => {
     const initials = loggedInUser ? loggedInUser.slice(0, 2) : "";
     return (
         <nav className="navbar">
@@ -20,7 +20,12 @@ const Navbar = ({ loggedInUser }) => {
                     <Link to="/contact">Contact</Link>
                 </li>
                 {loggedInUser ? (
-                    <li className="user-info">{initials}</li>
+                    <li
+                        className="user-info"
+                        onClick={() => setShowLogin(true)}
+                    >
+                        {initials}
+                    </li>
                 ) : (
                     <li>
                         <a href="/login">Login</a>

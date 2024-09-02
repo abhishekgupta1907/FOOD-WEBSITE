@@ -2,7 +2,11 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 100px;
+    gap: 20px;
+}
+.category {
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .card {
@@ -63,4 +67,5 @@ button:focus-visible {
     gap: 10px;
     justify-content: center;
     align-items: center;
+    margin-top: 160px;
 }
