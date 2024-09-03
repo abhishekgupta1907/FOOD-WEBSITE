@@ -6,7 +6,8 @@ const initialUsers = [
     { id: "user1", password: "pass1" },
     { id: "user2", password: "pass2" },
     { id: "user3", password: "pass3" },
-    // Add more users if needed
+    { id: "user4", password: "pass4" },
+    { id: "user5", password: "pass5" },
 ];
 
 const LoginPage = ({ onLoginSuccess }) => {
