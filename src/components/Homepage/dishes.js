@@ -1,3 +1,19 @@
+import React, { useState } from "react";
+import ExploreMenu from "../../ExploreMenu/ExploreMenu";
+import FoodDisplay from "../FoodDisplay/FoodDisplay";
+const Dishes = () => {
+    const [category, setCategory] = useState("All");
+    return (
+        <div>
+            {" "}
+            <ExploreMenu category={category} setCategory={setCategory} />
+            <FoodDisplay category={category} />
+        </div>
+    );
+};
+
+export default Dishes;
+
 // import React, { useState, useEffect } from "react";
 // import { Link } from "react-router-dom";
 // import "./style.css";
@@ -58,18 +74,3 @@
 // };
 
 // export default Dishes;
-import React, { useState } from "react";
-import ExploreMenu from "../../ExploreMenu/ExploreMenu";
-import FoodDisplay from "../FoodDisplay/FoodDisplay";
-const Dishes = () => {
-    const [category, setCategory] = useState("All");
-    return (
-        <div>
-            {" "}
-            <ExploreMenu category={category} setCategory={setCategory} />
-            <FoodDisplay category={category} />
-        </div>
-    );
-};
-
-export default Dishes;
