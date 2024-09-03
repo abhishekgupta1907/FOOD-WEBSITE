@@ -9,8 +9,10 @@ import AboutUs from "./components/AboutUs";
 import LogoutPopup from "./components/LogoutPopup/LogoutPopup";
 import Dishes from "./components/Homepage/Dishes";
 import Footer from "./components/Footer/Footer";
+import Cart from "./components/Cart/Cart";
 const Main = () => {
     const [loggedInUser, setLoggedInUser] = useState(null);
+    const [cart, showCart] = useState(false);
 
     const handleLoginSuccess = (userId) => {
         setLoggedInUser(userId);
@@ -37,10 +39,18 @@ const Main = () => {
                     loggedInUser={loggedInUser}
                     setShowLogin={setShowLogin}
                     onLogout={handleLogout}
+                    cart={cart}
+                    showCart={showCart}
                 />
                 <Routes>
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/Dishes" element={<Dishes />} />
+                    <Route
+                        path="/"
+                        element={<HomePage showCart={showCart} />}
+                    />
+                    <Route
+                        path="/Dishes"
+                        element={<Dishes showCart={showCart} />}
+                    />
                     <Route path="/about" element={<AboutUs />} />
                     <Route path="/Dishes/:category" element={<SingleDish />} />
                     <Route
@@ -49,7 +59,8 @@ const Main = () => {
                             <LoginPage onLoginSuccess={handleLoginSuccess} />
                         }
                     />
-                    <Route path="/contact" element={<ContactPage />} />
+                    <Route path="/contact" element={<ContactPage />} />1
+                    <Route path="/cart" element={<Cart />} />1
                 </Routes>
                 <Footer />
             </Router>

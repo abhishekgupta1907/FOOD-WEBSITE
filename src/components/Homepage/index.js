@@ -5,7 +5,7 @@ import image1 from "./food.webp";
 import image2 from "./restaarant.jpg";
 import image3 from "./testinomial.jpg";
 import image4 from "./discount.jpg";
-const HomePage = () => {
+const HomePage = ({ showCart }) => {
     return (
         <div className="home-container">
             <h2>Welcome to Foodie's Paradise</h2>
@@ -13,6 +13,7 @@ const HomePage = () => {
                 <Link
                     to={`/Dishes`}
                     style={{ textDecoration: "none", color: "inherit" }}
+                    onClick={() => showCart(true)}
                 >
                     <div className="card">
                         <img src={image1} alt="" />
