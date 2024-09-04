@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ExploreMenu from "../../ExploreMenu/ExploreMenu";
 import FoodDisplay from "../FoodDisplay/FoodDisplay";
-const Dishes = () => {
+const Dishes = ({ showCart }) => {
     const [category, setCategory] = useState("All");
+    useEffect(() => {
+        showCart(true);
+    }, []);
     return (
         <div>
             {" "}

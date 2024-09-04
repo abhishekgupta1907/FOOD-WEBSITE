@@ -7,7 +7,7 @@ import { StoreContext } from "../../context/StoreContext";
 const Navbar = ({ loggedInUser, setShowLogin, cart, showCart }) => {
     const initials = loggedInUser ? loggedInUser.slice(0, 2) : "";
     const { getTotalCartAmount } = useContext(StoreContext);
-    console.log(getTotalCartAmount());
+    console.log(getTotalCartAmount(), cart);
     return (
         <nav className="navbar">
             <div className="navbar-logo">
@@ -40,14 +40,16 @@ const Navbar = ({ loggedInUser, setShowLogin, cart, showCart }) => {
                     </li>
                 ) : (
                     <li>
-                        <a href="/login">Login</a>
+                        <Link to="/login" onClick={() => showCart(false)}>
+                            Login
+                        </Link>
                     </li>
                 )}
-                {cart ? (
+                {cart || getTotalCartAmount() ? (
                     <div>
                         {" "}
                         <li className="cart-img">
-                            <Link to="/cart" onClick={() => showCart(false)}>
+                            <Link to="/cart">
                                 {<img src={assets.basket_icon} alt="" />}{" "}
                             </Link>
                         </li>
