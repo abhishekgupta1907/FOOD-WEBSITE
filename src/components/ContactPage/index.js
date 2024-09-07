@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./style.css";
 
-const ContactPage = () => {
+const ContactPage = ({ showCart }) => {
+    useEffect(() => {
+        showCart(false);
+    });
     return (
         <div className="contact-container">
             <p>

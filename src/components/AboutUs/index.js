@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./style.css";
 
 const teamMembers = [
@@ -39,7 +39,10 @@ const teamMembers = [
     },
 ];
 
-const AboutUs = () => {
+const AboutUs = ({ showCart }) => {
+    useEffect(() => {
+        showCart(false);
+    });
     return (
         <div className="about-us-container">
             <h1>About Us</h1>

@@ -5,7 +5,7 @@ const Dishes = ({ showCart }) => {
     const [category, setCategory] = useState("All");
     useEffect(() => {
         showCart(true);
-    }, []);
+    });
     return (
         <div>
             {" "}

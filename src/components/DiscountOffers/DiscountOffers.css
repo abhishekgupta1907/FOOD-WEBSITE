@@ -1,0 +1,49 @@
+.discount-offers {
+    padding: 20px;
+    margin-top: 70px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.offers-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.offer-card {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    text-align: center;
+}
+
+.offer-card h3 {
+    margin-bottom: 10px;
+    color: #e74c3c;
+}
+
+.offer-code {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.offer-code span {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.offer-validity {
+    font-size: 12px;
+    color: #999;
+}

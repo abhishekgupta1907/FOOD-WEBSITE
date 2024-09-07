@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
 
@@ -10,7 +10,10 @@ const initialUsers = [
     { id: "user5", password: "pass5" },
 ];
 
-const LoginPage = ({ onLoginSuccess }) => {
+const LoginPage = ({ onLoginSuccess, showCart }) => {
+    useEffect(() => {
+        showCart(false);
+    });
     const [users, setUsers] = useState(initialUsers);
     const [id, setId] = useState("");
     const [password, setPassword] = useState("");

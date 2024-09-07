@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 import image1 from "./food.webp";
@@ -6,6 +6,9 @@ import image2 from "./restaarant.jpg";
 import image3 from "./testinomial.jpg";
 import image4 from "./discount.jpg";
 const HomePage = ({ showCart }) => {
+    useEffect(() => {
+        showCart(false);
+    });
     return (
         <div className="home-container">
             <h2>Welcome to Foodie's Paradise</h2>
@@ -22,7 +25,7 @@ const HomePage = ({ showCart }) => {
                     </div>
                 </Link>
                 <Link
-                    to={`/Dishes`}
+                    to={`/restaurant`}
                     style={{ textDecoration: "none", color: "inherit" }}
                 >
                     <div className="card">
@@ -32,7 +35,7 @@ const HomePage = ({ showCart }) => {
                     </div>
                 </Link>
                 <Link
-                    to={`/Dishes`}
+                    to={`/discount`}
                     style={{ textDecoration: "none", color: "inherit" }}
                 >
                     <div className="card">
@@ -42,7 +45,7 @@ const HomePage = ({ showCart }) => {
                     </div>
                 </Link>
                 <Link
-                    to={`/Dishes`}
+                    to={`/testimonials`}
                     style={{ textDecoration: "none", color: "inherit" }}
                 >
                     <div className="card">
