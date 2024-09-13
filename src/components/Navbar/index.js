@@ -7,7 +7,6 @@ import { StoreContext } from "../../context/StoreContext";
 const Navbar = ({ loggedInUser, setShowLogin, cart, showCart }) => {
     const initials = loggedInUser ? loggedInUser.slice(0, 2) : "";
     const { getTotalCartAmount } = useContext(StoreContext);
-    console.log(getTotalCartAmount(), cart);
     return (
         <nav className="navbar">
             <div className="navbar-logo">

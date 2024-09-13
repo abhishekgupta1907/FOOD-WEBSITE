@@ -76,7 +76,7 @@ const LoginPage = ({ onLoginSuccess, showCart }) => {
                     {isRegistering ? "Sign Up" : "Sign In"}
                 </button>
             </form>
-            <button
+            <div
                 className="toggle"
                 onClick={() => {
                     setIsRegistering(!isRegistering);
@@ -86,7 +86,7 @@ const LoginPage = ({ onLoginSuccess, showCart }) => {
                 {isRegistering
                     ? "Already have an account? Sign In"
                     : "Don’t have an account? Sign Up"}
-            </button>
+            </div>
         </div>
     );
 };
