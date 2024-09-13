@@ -67,6 +67,7 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease;
     text-transform: uppercase;
+    width: 200px;
 }
 
 .submit-btn:hover {
