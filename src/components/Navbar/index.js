@@ -1,12 +1,14 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom"; // Use NavLink instead of Link
 import "./style.css";
 import { assets } from "../../assets/assets";
 import { StoreContext } from "../../context/StoreContext";
 
 const Navbar = ({ loggedInUser, setShowLogin, cart, showCart }) => {
+    const linkClass = ({ isActive }) => (isActive ? "active" : "");
     const initials = loggedInUser ? loggedInUser.slice(0, 2) : "";
     const { getTotalCartAmount } = useContext(StoreContext);
+
     return (
         <nav className="navbar">
             <div className="navbar-logo">
@@ -16,19 +18,31 @@ const Navbar = ({ loggedInUser, setShowLogin, cart, showCart }) => {
             </div>
             <ul className="navbar-links">
                 <li>
-                    <Link to="/" onClick={() => showCart(false)}>
+                    <NavLink
+                        to="/"
+                        onClick={() => showCart(false)}
+                        className={linkClass}
+                    >
                         Home
-                    </Link>
+                    </NavLink>
                 </li>
                 <li>
-                    <Link to="/about" onClick={() => showCart(false)}>
+                    <NavLink
+                        to="/about"
+                        onClick={() => showCart(false)}
+                        className={linkClass}
+                    >
                         About Us
-                    </Link>
+                    </NavLink>
                 </li>
                 <li>
-                    <Link to="/contact" onClick={() => showCart(false)}>
+                    <NavLink
+                        to="/contact"
+                        onClick={() => showCart(false)}
+                        className={linkClass}
+                    >
                         Contact
-                    </Link>
+                    </NavLink>
                 </li>
                 {loggedInUser ? (
                     <li
@@ -39,18 +53,21 @@ const Navbar = ({ loggedInUser, setShowLogin, cart, showCart }) => {
                     </li>
                 ) : (
                     <li>
-                        <Link to="/login" onClick={() => showCart(false)}>
+                        <NavLink
+                            to="/login"
+                            onClick={() => showCart(false)}
+                            className={linkClass}
+                        >
                             Login
-                        </Link>
+                        </NavLink>
                     </li>
                 )}
                 {cart || getTotalCartAmount() ? (
                     <div>
-                        {" "}
                         <li className="cart-img">
-                            <Link to="/cart">
+                            <NavLink to="/cart" className={linkClass}>
                                 {<img src={assets.basket_icon} alt="" />}{" "}
-                            </Link>
+                            </NavLink>
                         </li>
                         <div
                             className={getTotalCartAmount() === 0 ? "" : "dot"}
