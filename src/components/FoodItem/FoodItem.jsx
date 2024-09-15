@@ -1,14 +1,41 @@
 import { assets } from "../../assets/assets";
 import "./FoodItem.css";
-import { useContext } from "react";
+import { useContext, useRef, useEffect } from "react";
 import { StoreContext } from "../../context/StoreContext";
+import { gsap } from "gsap"; // Import GSAP
 
 const FoodItem = ({ id, name, price, description, image }) => {
     const { cartItem, addToCart, removeFromCart } = useContext(StoreContext);
+
+    // Refs for animations
+    const foodItemRef = useRef(null);
+    const imageRef = useRef(null);
+
+    useEffect(() => {
+        // GSAP animation for the entire card fade-in
+        gsap.fromTo(
+            foodItemRef.current,
+            { opacity: 0, y: 50 },
+            { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
+        );
+
+        // GSAP animation for the image scaling in
+        gsap.fromTo(
+            imageRef.current,
+            { scale: 0 },
+            { scale: 1, duration: 1, ease: "elastic.out(1, 0.75)", delay: 0.2 }
+        );
+    }, []);
+
     return (
-        <div className="food-item">
+        <div className="food-item" ref={foodItemRef}>
             <div className="food-item-img-container">
-                <img src={image} alt="" className="food-item-img" />
+                <img
+                    src={image}
+                    alt=""
+                    className="food-item-img"
+                    ref={imageRef}
+                />
                 {!cartItem[id] ? (
                     <img
                         className="add"
