@@ -3,20 +3,23 @@ import { useNavigate } from "react-router-dom";
 import "./style.css";
 
 const initialUsers = [
-    { id: "user1", password: "pass1" },
-    { id: "user2", password: "pass2" },
-    { id: "user3", password: "pass3" },
-    { id: "user4", password: "pass4" },
-    { id: "user5", password: "pass5" },
+    { id: "user1", password: "pass1", name: "User One" },
+    { id: "user2", password: "pass2", name: "User Two" },
+    { id: "user3", password: "pass3", name: "User Three" },
+    { id: "user4", password: "pass4", name: "User Four" },
+    { id: "user5", password: "pass5", name: "User Five" },
 ];
 
 const LoginPage = ({ onLoginSuccess, showCart }) => {
     useEffect(() => {
         showCart(false);
     });
+
     const [users, setUsers] = useState(initialUsers);
     const [id, setId] = useState("");
     const [password, setPassword] = useState("");
+    const [name, setName] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
     const [isRegistering, setIsRegistering] = useState(false);
     const [error, setError] = useState("");
     const navigate = useNavigate(); // Initialize useNavigate
@@ -36,8 +39,10 @@ const LoginPage = ({ onLoginSuccess, showCart }) => {
     const handleRegister = () => {
         if (users.find((user) => user.id === id)) {
             setError("User already exists");
+        } else if (password !== confirmPassword) {
+            setError("Passwords do not match");
         } else {
-            setUsers([...users, { id, password }]);
+            setUsers([...users, { id, password, name }]);
             alert("Registration successful! You can now log in.");
             setIsRegistering(false);
             setError("");
@@ -57,6 +62,17 @@ const LoginPage = ({ onLoginSuccess, showCart }) => {
         <div className="login-page">
             <h1>{isRegistering ? "Sign Up" : "Sign In"}</h1>
             <form onSubmit={handleSubmit}>
+                {isRegistering && (
+                    <>
+                        <input
+                            type="text"
+                            placeholder="Name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                        />
+                    </>
+                )}
                 <input
                     type="text"
                     placeholder="User ID"
@@ -71,6 +87,17 @@ const LoginPage = ({ onLoginSuccess, showCart }) => {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
+                {isRegistering && (
+                    <>
+                        <input
+                            type="password"
+                            placeholder="Confirm Password"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            required
+                        />
+                    </>
+                )}
                 {error && <p className="error">{error}</p>}
                 <button type="submit">
                     {isRegistering ? "Sign Up" : "Sign In"}

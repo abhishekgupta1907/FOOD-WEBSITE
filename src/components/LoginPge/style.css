@@ -75,6 +75,7 @@ button[type="submit"]:hover {
 
 .toggle:hover {
     color: #5c6bc0;
+    text-decoration: underline;
 }
 
 /* Error Message Styles */
