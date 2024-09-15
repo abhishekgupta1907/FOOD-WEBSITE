@@ -23,7 +23,12 @@ const FoodItem = ({ id, name, price, description, image }) => {
         gsap.fromTo(
             imageRef.current,
             { scale: 0 },
-            { scale: 1, duration: 5, ease: "elastic.out(1, 0.75)", delay: 0.2 }
+            {
+                scale: 1,
+                duration: 5,
+                ease: "elastic.out(0.8, 0.75)",
+                delay: 0.2,
+            }
         );
     }, []);
 
