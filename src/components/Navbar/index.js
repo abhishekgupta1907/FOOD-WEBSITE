@@ -65,9 +65,9 @@ const Navbar = ({ loggedInUser, setShowLogin, cart, showCart }) => {
                 {cart || getTotalCartAmount() ? (
                     <div>
                         <li className="cart-img">
-                            <NavLink to="/cart" className={linkClass}>
+                            <Link to="/cart" className={linkClass}>
                                 {<img src={assets.basket_icon} alt="" />}{" "}
-                            </NavLink>
+                            </Link>
                         </li>
                         <div
                             className={getTotalCartAmount() === 0 ? "" : "dot"}
